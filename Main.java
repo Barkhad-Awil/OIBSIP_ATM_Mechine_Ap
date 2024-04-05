@@ -3,10 +3,13 @@ import java.util.Scanner;
 // Main class for ATM interface
 public class Main implements ATM {
     private final User user;
+    private static User recipient = null; // New recipient user
     private final TransactionHistory transactionHistory;
 
+    // Constructor
     public Main(User user) {
         this.user = user;
+        this.recipient = new User("recipient123", "5678", 500.0); // Initializing recipient with ID and balance
         this.transactionHistory = new TransactionHistory();
     }
 
@@ -53,6 +56,7 @@ public class Main implements ATM {
             transactionHistory.addTransaction(new Transaction("Transfer to " + recipient.getUserId(), amount));
             System.out.println("Transfer of $" + amount + " to " + recipient.getUserId() + " successful.");
             System.out.println("Your updated balance: $" + user.getBalance());
+            System.out.println(recipient.getUserId() + "'s balance: $" + recipient.getBalance());
         }
     }
 
@@ -113,11 +117,15 @@ public class Main implements ATM {
                     scanner.nextLine(); // Consume newline
                     System.out.print("Enter recipient User ID: ");
                     String recipientId = scanner.nextLine();
-                    System.out.print("Enter transfer amount: $");
-                    double transferAmount = scanner.nextDouble();
-                    User recipient = new User(recipientId, "", 0.0); // Dummy user as PIN is not used for validation here
-                    atm.transfer(recipient, transferAmount);
-                    break;
+                    if (recipient.getUserId().equals(recipientId)) {
+                        System.out.print("Enter transfer amount: $");
+                        double transferAmount = scanner.nextDouble();
+                        atm.transfer(recipient, transferAmount);
+                    } else {
+                        System.out.println("Enter valid recipient id!. ");
+                    }
+
+                break;
                 case 4:
                     atm.viewTransactionHistory();
                     break;
