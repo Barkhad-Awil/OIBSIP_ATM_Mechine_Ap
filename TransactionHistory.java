@@ -4,7 +4,6 @@ import java.util.List;
 class TransactionHistory {
     private final List<Transaction> transactions;
 
-    // Constructor
     public TransactionHistory() {
         transactions = new ArrayList<>();
     }

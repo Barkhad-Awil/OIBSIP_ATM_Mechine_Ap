@@ -4,7 +4,6 @@ class User {
     private final String pin;
     private double balance;
 
-    // Constructor
     public User(String userId, String pin, double balance) {
         this.userId = userId;
         this.pin = pin;

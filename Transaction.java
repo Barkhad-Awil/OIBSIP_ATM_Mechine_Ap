@@ -3,7 +3,6 @@ class Transaction {
     private final String type;
     private final double amount;
 
-    // Constructor
     public Transaction(String type, double amount) {
         this.type = type;
         this.amount = amount;

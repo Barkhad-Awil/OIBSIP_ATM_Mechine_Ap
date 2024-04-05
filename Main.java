@@ -5,7 +5,6 @@ public class Main implements ATM {
     private final User user;
     private final TransactionHistory transactionHistory;
 
-    // Constructor
     public Main(User user) {
         this.user = user;
         this.transactionHistory = new TransactionHistory();
